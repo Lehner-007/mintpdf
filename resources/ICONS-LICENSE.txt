@@ -1,0 +1,5 @@
+Die acht group_*.svg und crop.svg wurden für mintPDF aus einfachen geometrischen Formen neu erstellt.
+Lizenz: CC0-1.0 (https://creativecommons.org/publicdomain/zero/1.0/).
+Keine Grafiken oder Markenzeichen von PDF24, krop oder PDF Arranger übernommen.
+
+annotations.png, pdfa.png, pdfa_check.png und document_info.png: für mintPDF mit Imagegen erzeugte 3D-Ergänzungen. Keine CC0-Behauptung für generierte Bilder. Herkunft und Erzeugung in BILDQUELLEN.json und ICON-PROMPTS.json.

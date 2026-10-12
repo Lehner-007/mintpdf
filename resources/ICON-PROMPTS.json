@@ -1,0 +1,39 @@
+{
+  "generator": "Integriertes image_gen.imagegen (kein CLI-Fallback)",
+  "project": "mintPDF: einheitliche 3D-Werkzeugkollektion",
+  "assets": [
+    {
+      "id": "info",
+      "purpose": "Info / blaue Ausrufezeichen-Wolke",
+      "prompt": "Vorhandene 3D-Grafik aus der zentralen Sammlung wiederverwendet."
+    },
+    {
+      "id": "annotations",
+      "purpose": "Stilangleichung an die vorhandene 3D-PDF-Kollektion",
+      "reference": "Kontaktübersicht der vorhandenen Werkzeug-Icons",
+      "prompt": "Ein einzelnes transparentes 3D-Werkzeug-Icon: elfenbeinfarbenes Papier mit umgeknickter Ecke, plastische Kanten, glänzende grüne/blaue Akzente, rotes PDF-Symbol, weiches Licht von oben links. Anmerkungen: gelbe Sprechblase und Stift. PDF/A: Archivbox. PDF/A-Prüfung: Archivbox und grünes Häkchen. Dokumenteninformationen: blaues i. Einheitliche Perspektive und Größe, bei 64 Pixeln erkennbar.",
+      "generated_source": "/home/josef/.codex/generated_images/01a12ec1-74c4-7400-9737-448e1a7b101c/exec-efc37a81-8254-412a-aa88-7116c22f5a1e.png"
+    },
+    {
+      "id": "pdfa",
+      "purpose": "Stilangleichung an die vorhandene 3D-PDF-Kollektion",
+      "reference": "Kontaktübersicht der vorhandenen Werkzeug-Icons",
+      "prompt": "Ein einzelnes transparentes 3D-Werkzeug-Icon: elfenbeinfarbenes Papier mit umgeknickter Ecke, plastische Kanten, glänzende grüne/blaue Akzente, rotes PDF-Symbol, weiches Licht von oben links. Anmerkungen: gelbe Sprechblase und Stift. PDF/A: Archivbox. PDF/A-Prüfung: Archivbox und grünes Häkchen. Dokumenteninformationen: blaues i. Einheitliche Perspektive und Größe, bei 64 Pixeln erkennbar.",
+      "generated_source": "/home/josef/.codex/generated_images/01a12ec1-74c4-7400-9737-448e1a7b101c/exec-6986c1d4-b126-4406-88ec-f5ed6357df9d.png"
+    },
+    {
+      "id": "pdfa_check",
+      "purpose": "Stilangleichung an die vorhandene 3D-PDF-Kollektion",
+      "reference": "Kontaktübersicht der vorhandenen Werkzeug-Icons",
+      "prompt": "Ein einzelnes transparentes 3D-Werkzeug-Icon: elfenbeinfarbenes Papier mit umgeknickter Ecke, plastische Kanten, glänzende grüne/blaue Akzente, rotes PDF-Symbol, weiches Licht von oben links. Anmerkungen: gelbe Sprechblase und Stift. PDF/A: Archivbox. PDF/A-Prüfung: Archivbox und grünes Häkchen. Dokumenteninformationen: blaues i. Einheitliche Perspektive und Größe, bei 64 Pixeln erkennbar.",
+      "generated_source": "/home/josef/.codex/generated_images/01a12ec1-74c4-7400-9737-448e1a7b101c/exec-22dd76a2-e20e-4fd6-8c07-6adfc8c7fc17.png"
+    },
+    {
+      "id": "document_info",
+      "purpose": "Stilangleichung an die vorhandene 3D-PDF-Kollektion",
+      "reference": "Kontaktübersicht der vorhandenen Werkzeug-Icons",
+      "prompt": "Ein einzelnes transparentes 3D-Werkzeug-Icon: elfenbeinfarbenes Papier mit umgeknickter Ecke, plastische Kanten, glänzende grüne/blaue Akzente, rotes PDF-Symbol, weiches Licht von oben links. Anmerkungen: gelbe Sprechblase und Stift. PDF/A: Archivbox. PDF/A-Prüfung: Archivbox und grünes Häkchen. Dokumenteninformationen: blaues i. Einheitliche Perspektive und Größe, bei 64 Pixeln erkennbar.",
+      "generated_source": "/home/josef/.codex/generated_images/01a12ec1-74c4-7400-9737-448e1a7b101c/exec-6d6f76fc-58d1-4486-811c-dd8021d75471.png"
+    }
+  ]
+}

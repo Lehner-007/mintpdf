@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=mintPDF
+Comment=Lokale PDF-Werkzeuge
+Exec=/usr/bin/mintpdf
+Icon=/usr/share/mintpdf/resources/mintpdf.png
+Terminal=false
+Categories=Office;Graphics;
+X-mintpdf-Managed=true

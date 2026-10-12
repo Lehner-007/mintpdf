@@ -1,0 +1,86 @@
+{
+  "name": "mintPDF",
+  "tool_info": [
+    {
+      "name": "Python",
+      "kind": "python",
+      "apt": "python3"
+    },
+    {
+      "name": "GTK 4",
+      "kind": "gtk",
+      "apt": "gir1.2-gtk-4.0"
+    },
+    {
+      "name": "PyGObject",
+      "kind": "module",
+      "module": "gi",
+      "distribution": "PyGObject",
+      "apt": "python3-gi"
+    },
+    {
+      "name": "PyMuPDF",
+      "kind": "module",
+      "module": "pymupdf",
+      "distribution": "PyMuPDF",
+      "apt": "",
+      "optional": true,
+      "note_key": "info_pymupdf"
+    },
+    {
+      "name": "Cairo / GTK-Anbindung",
+      "kind": "cairo",
+      "apt": "python3-cairo python3-gi-cairo",
+      "optional": true,
+      "note_key": "info_cairo"
+    },
+    {
+      "name": "Ghostscript",
+      "kind": "command",
+      "command": "gs",
+      "apt": "ghostscript",
+      "optional": true,
+      "note_key": "info_gs"
+    },
+    {
+      "name": "LibreOffice",
+      "kind": "command",
+      "command": "libreoffice",
+      "apt": "libreoffice",
+      "optional": true,
+      "note_key": "info_office"
+    },
+    {
+      "name": "OCRmyPDF",
+      "kind": "command",
+      "command": "ocrmypdf",
+      "apt": "ocrmypdf",
+      "optional": true,
+      "note_key": "info_ocr"
+    },
+    {
+      "name": "Tesseract",
+      "kind": "command",
+      "command": "tesseract",
+      "apt": "tesseract-ocr tesseract-ocr-deu tesseract-ocr-eng",
+      "optional": true,
+      "note_key": "info_ocr"
+    },
+    {
+      "name": "wkhtmltopdf",
+      "kind": "command",
+      "command": "wkhtmltopdf",
+      "apt": "wkhtmltopdf",
+      "optional": true,
+      "note_key": "info_web"
+    },
+    {
+      "name": "veraPDF",
+      "kind": "command",
+      "command": "verapdf",
+      "apt": "",
+      "optional": true,
+      "note_key": "info_verapdf"
+    }
+  ]
+}

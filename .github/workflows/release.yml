@@ -1,0 +1,37 @@
+name: Release mintPDF
+on:
+  push:
+    tags: ['v*']
+permissions:
+  contents: write
+jobs:
+  release:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build and verify package
+        run: |
+          set -eu
+          version=$(python3 -c 'import core;print(core.VERSION)')
+          test "$GITHUB_REF_NAME" = "v$version"
+          ./erstelledeb.sh
+          test "$(dpkg-deb -f dist/mintpdf_${version}_amd64.deb Version)" = "$version"
+          mkdir -p work/package-check
+          dpkg-deb -x dist/mintpdf_${version}_amd64.deb work/package-check
+          cmp core.py work/package-check/usr/share/mintpdf/core.py
+          cmp mintpdf.py work/package-check/usr/share/mintpdf/mintpdf.py
+          cd dist
+          sha256sum -c mintpdf_${version}_amd64.deb.sha256
+      - name: Publish verified release assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -eu
+          version=$(python3 -c 'import core;print(core.VERSION)')
+          git archive --format=tar.gz --prefix=mintpdf-${version}/ HEAD > dist/mintpdf-${version}-source.tar.gz
+          cd dist
+          sha256sum mintpdf-${version}-source.tar.gz > mintpdf-${version}-source.tar.gz.sha256
+          cd ..
+          gh release create "$GITHUB_REF_NAME" --draft --title "mintPDF $version" --notes-file RELEASE.md
+          gh release upload "$GITHUB_REF_NAME" dist/*.deb dist/*.sha256 dist/*-source.tar.gz
+          gh release edit "$GITHUB_REF_NAME" --draft=false
