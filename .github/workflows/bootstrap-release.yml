@@ -1,0 +1,40 @@
+name: Publish existing v1.39.2 tag
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/bootstrap-release.yml']
+permissions:
+  contents: write
+jobs:
+  release:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: v1.39.2
+      - name: Build and verify package
+        run: |
+          set -eu
+          version=$(python3 -c 'import core;print(core.VERSION)')
+          test "v1.39.2" = "v$version"
+          ./erstelledeb.sh
+          test "$(dpkg-deb -f dist/mintpdf_${version}_amd64.deb Version)" = "$version"
+          mkdir -p work/package-check
+          dpkg-deb -x dist/mintpdf_${version}_amd64.deb work/package-check
+          cmp core.py work/package-check/usr/share/mintpdf/core.py
+          cmp mintpdf.py work/package-check/usr/share/mintpdf/mintpdf.py
+          cd dist
+          sha256sum -c mintpdf_${version}_amd64.deb.sha256
+      - name: Publish verified release assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -eu
+          version=$(python3 -c 'import core;print(core.VERSION)')
+          git archive --format=tar.gz --prefix=mintpdf-${version}/ HEAD > dist/mintpdf-${version}-source.tar.gz
+          cd dist
+          sha256sum mintpdf-${version}-source.tar.gz > mintpdf-${version}-source.tar.gz.sha256
+          cd ..
+          gh release create "v1.39.2" --draft --title "mintPDF $version" --notes-file RELEASE.md
+          gh release upload "v1.39.2" dist/*.deb dist/*.sha256 dist/*-source.tar.gz
+          gh release edit "v1.39.2" --draft=false
