@@ -12,6 +12,8 @@ if not wheels:
  wheels=list(wheel_dir.glob('pymupdf-1.28.2-*-manylinux_2_28_x86_64.whl'))
 assert len(wheels)==1
 assert hashlib.sha256(wheels[0].read_bytes()).hexdigest()=='397d6715c1f0df7548a92d0afd8ce370fc48fa47aeefac16be2bc04a16a8227f', "Wheel checksum mismatch"
+validator=ROOT/'packaging/verapdf/cli-1.30.3.jar'
+assert hashlib.sha256(validator.read_bytes()).hexdigest()=='19f6edd5c92841a38d9b3b018a555b7ba173b13e4e0d29edecc232e5ba6c1d70', 'veraPDF checksum mismatch'
 output=ROOT/'dist'/f'mintpdf_{version}_amd64.deb'
 if output.exists():raise FileExistsError(output)
 with tempfile.TemporaryDirectory(dir=ROOT/'work',prefix='deb-') as tmp:
@@ -21,6 +23,10 @@ with tempfile.TemporaryDirectory(dir=ROOT/'work',prefix='deb-') as tmp:
  for name in ['assets','resources','languages','help']:
   shutil.copytree(ROOT/name,app/name)
  with zipfile.ZipFile(wheels[0]) as z:z.extractall(app/'vendor')
+ shutil.copytree(ROOT/'packaging/verapdf',app/'verapdf')
+ validator_launcher=app/'verapdf/verapdf'
+ validator_launcher.write_text('#!/bin/sh\nexec /usr/bin/java -jar "$(dirname -- "$0")/cli-1.30.3.jar" "$@"\n')
+ validator_launcher.chmod(0o755)
  docs=stage/'usr/share/doc/mintpdf';docs.mkdir(parents=True)
  for name in ['LICENSE','README.md','CHANGELOG.md']:shutil.copy2(ROOT/name,docs/name)
  shutil.copy2(ROOT/'packaging/user_integration.py',docs/'user_integration.py')
@@ -34,19 +40,18 @@ with tempfile.TemporaryDirectory(dir=ROOT/'work',prefix='deb-') as tmp:
 Version: {version}
 Architecture: amd64
 Maintainer: Josef Lehner <josef@dogtruck.eu>
-Depends: python3 (>= 3.12), python3 (<< 3.13), python3-gi, python3-cairo, python3-gi-cairo, python3-packaging, gir1.2-gtk-4.0, libc6 (>= 2.28), libstdc++6
-Recommends: ghostscript, libreoffice, ocrmypdf, tesseract-ocr, wkhtmltopdf
+Depends: python3 (>= 3.12), python3 (<< 3.13), python3-gi, python3-cairo, python3-gi-cairo, python3-packaging, gir1.2-gtk-4.0, libc6 (>= 2.28), libstdc++6, ghostscript, libreoffice, ocrmypdf, tesseract-ocr, tesseract-ocr-deu, tesseract-ocr-eng, wkhtmltopdf, default-jre-headless
 Section: office
 Priority: optional
 Homepage: https://dogtruck.eu
 Description: Local PDF tools for Linux Mint
- GTK 4 PDF tools with bundled PyMuPDF 1.28.2. veraPDF is optional
- and must be installed separately for PDF/A validation.
+ GTK 4 PDF tools with bundled PyMuPDF 1.28.2 and veraPDF 1.30.3.
+ OCR, web conversion and Java runtime dependencies are required.
 ''')
  for name in ['postinst','prerm','postrm']:
   shutil.copy2(ROOT/'packaging'/name,control/name);(control/name).chmod(0o755)
  for path in stage.rglob('*'):
-  if path.is_file() and path not in [launcher,control/'postinst',control/'prerm',control/'postrm']:path.chmod(0o644)
+  if path.is_file() and path not in [launcher,validator_launcher,control/'postinst',control/'prerm',control/'postrm']:path.chmod(0o644)
  subprocess.run(['dpkg-deb','--root-owner-group','--build',str(stage),str(output)],check=True)
  digest=hashlib.sha256(output.read_bytes()).hexdigest()
  output.with_suffix('.deb.sha256').write_text(f'{digest}  {output.name}\n')

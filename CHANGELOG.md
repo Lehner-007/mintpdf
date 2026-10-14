@@ -1,3 +1,8 @@
+## 1.39.3
+
+- DEB: OCRmyPDF, Tesseract samt DE/EN-Sprachdaten, wkhtmltopdf, Ghostscript, LibreOffice und Java als Pflichtabhängigkeiten.
+- veraPDF 1.30.3 mit geprüfter Herkunft im DEB enthalten; keine separate Einrichtung erforderlich.
+
 ## 1.39.2
 
 - Beim Überlagern Metadaten, Lesezeichen und eingebettete Dateien von PDF 1 erhalten; PDF 2 liefert ausschließlich Seiteninhalt.

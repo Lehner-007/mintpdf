@@ -13,7 +13,7 @@ import tempfile
 import zipfile
 import re
 
-VERSION = '1.39.2'
+VERSION = '1.39.3'
 """Zentrale Funktionsdefinitionen für Verarbeitung und Navigation."""
 from dataclasses import dataclass
 
@@ -112,6 +112,8 @@ def can_dispatch(key, busy=False):
 
 
 def validator_command():
+    bundled=Path(__file__).resolve().parent/'verapdf/verapdf'
+    if bundled.is_file() and os.access(bundled,os.X_OK):return str(bundled)
     command=shutil.which('verapdf')
     if command:return command
     local=Path.home()/'.local/bin/verapdf'

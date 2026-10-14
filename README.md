@@ -1,4 +1,4 @@
-# mintPDF 1.39.2
+# mintPDF 1.39.3
 
 Lokale PDF-Werkzeugsammlung für Linux Mint, Python und GTK 4.
 Autor: Josef Lehner · https://dogtruck.eu · GPL-3.0-only (siehe LICENSE).
@@ -26,10 +26,10 @@ ebenfalls für die Deinstallation erfasst.
 Das GitHub-Release enthält ein DEB für amd64 und Python 3.12 mit PyMuPDF 1.28.2:
 
 ```bash
-sudo apt install ./mintpdf_1.39.2_amd64.deb
+sudo apt install ./mintpdf_1.39.3_amd64.deb
 ```
 
-GTK/Cairo und weitere Pflichtabhängigkeiten werden von APT aufgelöst. Externe PDF-Werkzeuge sind optional; veraPDF muss bei Bedarf gesondert eingerichtet werden. Fehlende Werkzeuge nennt die Oberfläche. Das Paket enthält Menüeintrag, Programmsymbol und eine verwaltete Desktop-Verknüpfung, sofern ein Desktop-Ordner aktiviert ist. Entfernen mit `sudo apt remove mintpdf` bereinigt die eigenen Laufzeitdaten unter `~/.local/share/mintpdf`; separat gespeicherte PDFs bleiben erhalten. Nicht erreichbare oder geschützte Pfade werden gemeldet.
+APT installiert GTK/Cairo, Ghostscript, LibreOffice, OCRmyPDF, Tesseract mit Deutsch/Englisch, wkhtmltopdf und die Java-Laufzeit als Pflichtabhängigkeiten, auch ohne Recommends. veraPDF 1.30.3 ist im DEB enthalten. Für den Quellstart bleiben externe Werkzeuge separat erforderlich. Fehlende Werkzeuge nennt die Oberfläche. Das Paket enthält Menüeintrag, Programmsymbol und eine verwaltete Desktop-Verknüpfung, sofern ein Desktop-Ordner aktiviert ist. Entfernen mit `sudo apt remove mintpdf` bereinigt die eigenen Laufzeitdaten unter `~/.local/share/mintpdf`; separat gespeicherte PDFs bleiben erhalten. Nicht erreichbare oder geschützte Pfade werden gemeldet.
 
 Quellpaket und SHA-256-Prüfsummen stehen im selben Release. Entwicklungsumgebung, Einstellungen und Logs sind ausgeschlossen. Tests: siehe [PRUEFANLEITUNG.md](PRUEFANLEITUNG.md).
 
