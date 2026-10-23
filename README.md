@@ -1,4 +1,4 @@
-# mintPDF 1.39.3
+# mintPDF 1.39.4
 
 Lokale PDF-Werkzeugsammlung für Linux Mint, Python und GTK 4.
 Autor: Josef Lehner · https://dogtruck.eu · GPL-3.0-only (siehe LICENSE).
@@ -26,7 +26,7 @@ ebenfalls für die Deinstallation erfasst.
 Das GitHub-Release enthält ein DEB für amd64 und Python 3.12 mit PyMuPDF 1.28.2:
 
 ```bash
-sudo apt install ./mintpdf_1.39.3_amd64.deb
+sudo apt install ./mintpdf_1.39.4_amd64.deb
 ```
 
 APT installiert GTK/Cairo, Ghostscript, LibreOffice, OCRmyPDF, Tesseract mit Deutsch/Englisch, wkhtmltopdf und die Java-Laufzeit als Pflichtabhängigkeiten, auch ohne Recommends. veraPDF 1.30.3 ist im DEB enthalten. Für den Quellstart bleiben externe Werkzeuge separat erforderlich. Fehlende Werkzeuge nennt die Oberfläche. Das Paket enthält Menüeintrag, Programmsymbol und eine verwaltete Desktop-Verknüpfung, sofern ein Desktop-Ordner aktiviert ist. Entfernen mit `sudo apt remove mintpdf` bereinigt die eigenen Laufzeitdaten unter `~/.local/share/mintpdf`; separat gespeicherte PDFs bleiben erhalten. Nicht erreichbare oder geschützte Pfade werden gemeldet.
@@ -58,8 +58,7 @@ mit den Teil-PDFs erzeugen.
 PDF zusammenführen öffnet sofort die PDF-Dateiauswahl. Danach die Dateien im
 Reihenfolgefenster mit „Nach oben“ und „Nach unten“ sortieren und mit
 „Fertigstellen“ zusammenführen. Weitere PDFs hinzufügen oder entfernen ist möglich.
-Standard-Ausgabeordner aller Werkzeuge ist `~/Downloads` (bei Josef
-`/home/josef/Downloads`). Vorhandene Dateinamen erhalten im Vorschlag eine Nummer.
+Standard-Ausgabeordner aller Werkzeuge ist `~/Downloads`. Vorhandene Dateinamen erhalten im Vorschlag eine Nummer.
 Die Oberfläche verwendet eine klassische Menüleiste.
 
 
@@ -116,8 +115,13 @@ Sprachen und Einstellungen. `resources/` enthält die 3D-Icons.
 `python3 build.py` erstellt bereinigte Pakete ohne Logs, Konfigurationen,
 Entwicklungsdateien und private Startdatei. Bytecode mit Python 3.12 erstellen.
 Die Quellen und Buildinformationen liegen im Quellcodepaket bei.
-Fremde Programme/Bibliotheken sind eigenständige Komponenten unter ihren
-jeweiligen Lizenzen und werden nicht in diesen Paketen mitgeliefert.
+Das Quell-ZIP enthält keine Fremdbibliotheken. Das DEB bündelt PyMuPDF 1.28.2
+und veraPDF 1.30.3 als eigenständige Komponenten unter ihren jeweiligen
+Lizenzen; Details siehe [Drittanbieterhinweise](THIRD_PARTY_NOTICES.md).
+PyMuPDF ist AGPL-3.0 oder kommerziell lizenziert; das DEB verwendet
+die AGPL-Fassung. Drittanbieterhinweise und Lizenztexte liegen im Paket unter
+`/usr/share/doc/mintpdf/`. Der passende PyMuPDF-Quellstand ist im GitHub-Release
+zusätzlich mit SHA-256-Prüfsumme beigefügt.
 
 Beim Start wird das eigene Sitzungslog geleert. Unter **Bearbeiten → Logs anzeigen** lässt es sich schreibgeschützt öffnen und aktualisieren.
 
@@ -215,8 +219,7 @@ Menü: Datei / Werkzeuge / Hilfe. Datei enthält Mehrere Funktionen, Ausgabeordn
 und Einstellungen, danach eine Trennlinie und Beenden. Werkzeuge enthält die
 acht Funktionsgruppen. Hilfe enthält Hilfe (F1), Protokoll, Info und Über.
 
-24 passende Kachelbilder aus `/home/josef/Bilder` wurden visuell geprüft und
-unverändert in `resources/` übernommen. Bildquellen: `resources/BILDQUELLEN.json`.
+24 passende Kachelbilder wurden visuell geprüft und unverändert in `resources/` übernommen. Bildquellen: `resources/BILDQUELLEN.json`.
 Alle sichtbaren Werkzeugkacheln verwenden PNG-Icons aus der einheitlichen 3D-Kollektion. Die
 Verfügbarkeit einer Funktion hängt weiterhin von ihrer Implementierung und
 ihren Voraussetzungen ab. Programmsymbol: das ausdrücklich von Josef gewählte

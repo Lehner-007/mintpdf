@@ -1,13 +1,13 @@
 # mintPDF richtig prüfen
 
-Diese Anleitung gilt für `/home/josef/Labor/Python/mintpdf` und weitergegebene Projektkopien. Testanleitung und Voraussetzungsliste befinden sich zusätzlich unter `tests/README.md` und `tests/test_requirements.json`.
+Diese Anleitung gilt für den Projektordner von mintPDF und weitergegebene Projektkopien. Testanleitung und Voraussetzungsliste befinden sich zusätzlich unter `tests/README.md` und `tests/test_requirements.json`.
 
 ## 1. Prüfumgebung festhalten
 
 Im Projektordner arbeiten. Unter Linux Mint die vorgesehene Projektumgebung verwenden:
 
 ```bash
-cd /home/josef/Labor/Python/mintpdf
+cd /pfad/zum/mintpdf-projekt
 .venv/bin/python --version
 .venv/bin/python -c "import core, pymupdf; print('mintPDF', core.VERSION); print('PyMuPDF', pymupdf.VersionBind); print('PDF/A fehlt:', core.missing_tools('pdfa'))"
 ```

@@ -133,14 +133,9 @@ def select_save_target(parent,title,initial,selected,on_error,accept_label):
 
 
 def write_settings(settings):
-    """Konfiguration atomar speichern, bestehende Einstellungen bei Fehler erhalten."""
-    path=STATE/'config/settings.json'
-    fd,temporary=tempfile.mkstemp(prefix='.settings-',dir=path.parent)
-    try:
-        with os.fdopen(fd,'w',encoding='utf-8') as stream:
-            json.dump(settings,stream,ensure_ascii=False,indent=2)
-        os.replace(temporary,path)
-    finally: Path(temporary).unlink(missing_ok=True)
+    """Einstellungen über den gemeinsamen atomaren JSON-Schreiber sichern."""
+    from josef_basis.model import atomic_json
+    atomic_json(STATE / "config/settings.json", settings)
 
 
 def validate_output_folder(value):

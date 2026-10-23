@@ -20,6 +20,11 @@ jobs:
           dpkg-deb -x dist/mintpdf_${version}_amd64.deb work/package-check
           cmp core.py work/package-check/usr/share/mintpdf/core.py
           cmp mintpdf.py work/package-check/usr/share/mintpdf/mintpdf.py
+          test -s work/package-check/usr/share/doc/mintpdf/PyMuPDF-AGPL-3.0.txt
+          test -s work/package-check/usr/share/doc/mintpdf/THIRD_PARTY_NOTICES.md
+          curl -fL --retry 3 'https://files.pythonhosted.org/packages/a3/fb/b6761fa2d5266f2cdb24c3b91f4023070ab7848381417678e7a289a1d52a/pymupdf-1.28.2.tar.gz' -o dist/pymupdf-1.28.2.tar.gz
+          echo '5e0be7908a715aa20333caddd73f1d6f01e4cd0c26e869fa2dd0b7f344da2249  dist/pymupdf-1.28.2.tar.gz' | sha256sum -c
+          echo '5e0be7908a715aa20333caddd73f1d6f01e4cd0c26e869fa2dd0b7f344da2249  pymupdf-1.28.2.tar.gz' > dist/pymupdf-1.28.2.tar.gz.sha256
           cd dist
           sha256sum -c mintpdf_${version}_amd64.deb.sha256
       - name: Publish verified release assets
@@ -33,5 +38,5 @@ jobs:
           sha256sum mintpdf-${version}-source.tar.gz > mintpdf-${version}-source.tar.gz.sha256
           cd ..
           gh release create "$GITHUB_REF_NAME" --draft --title "mintPDF $version" --notes-file RELEASE.md
-          gh release upload "$GITHUB_REF_NAME" dist/*.deb dist/*.sha256 dist/*-source.tar.gz
+          gh release upload "$GITHUB_REF_NAME" dist/*.deb dist/*.sha256 dist/*-source.tar.gz dist/pymupdf-1.28.2.tar.gz
           gh release edit "$GITHUB_REF_NAME" --draft=false

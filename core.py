@@ -13,7 +13,15 @@ import tempfile
 import zipfile
 import re
 
-VERSION = '1.39.3'
+
+# Lokale, geprüfte Bibliothekskopie; kein Zugriff auf den Entwicklungsordner.
+import sys as _basis_sys
+from pathlib import Path as _BasisPath
+_basis_vendor = str(_BasisPath(__file__).resolve().parent / 'vendor')
+if _basis_vendor not in _basis_sys.path:
+    _basis_sys.path.insert(0, _basis_vendor)
+
+VERSION = '1.39.4'
 """Zentrale Funktionsdefinitionen für Verarbeitung und Navigation."""
 from dataclasses import dataclass
 

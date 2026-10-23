@@ -50,11 +50,11 @@ def main():
   path.mkdir(parents=True,exist_ok=True);directories.extend(str(x) for x in reversed(absent))
  try:
   mkdir(target)
-  names=['mintpdf.py','core.py','mintpdf.pyc','core.pyc','LICENSE','README.md','CHANGELOG.md','projekt.json','requirements.txt','setup_dependencies.sh','install.py','PRUEFBERICHT.txt','REFERENZPROJEKTE.txt']
+  names=['mintpdf.py','core.py','mintpdf.pyc','core.pyc','LICENSE','README.md','CHANGELOG.md','projekt.json','requirements.txt','setup_dependencies.sh','install.py','REFERENZPROJEKTE.txt']
   for name in names:
    src=SOURCE/name
    if src.is_file():dest=target/name;shutil.copy2(src,dest);files.append(str(dest))
-  for name in ('resources','languages','help','assets'):
+  for name in ('resources','languages','help','assets','vendor'):
    for src in (SOURCE/name).rglob('*'):
     if src.is_file():
      dest=target/src.relative_to(SOURCE);mkdir(dest.parent);shutil.copy2(src,dest);files.append(str(dest))

@@ -1,3 +1,7 @@
+## 1.39.4 – 22.10.2026
+
+Gemeinsame Bibliothek josef_basis 0.1.0 lokal eingebunden; vorhandene Schnittstellen beibehalten.
+
 ## 1.39.3
 
 - DEB: OCRmyPDF, Tesseract samt DE/EN-Sprachdaten, wkhtmltopdf, Ghostscript, LibreOffice und Java als Pflichtabhängigkeiten.

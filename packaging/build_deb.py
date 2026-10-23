@@ -20,15 +20,16 @@ with tempfile.TemporaryDirectory(dir=ROOT/'work',prefix='deb-') as tmp:
  stage=Path(tmp);app=stage/'usr/share/mintpdf';app.mkdir(parents=True)
  for name in ['core.py','mintpdf.py','projekt.json']:
   shutil.copy2(ROOT/name,app/name)
- for name in ['assets','resources','languages','help']:
-  shutil.copytree(ROOT/name,app/name)
+ for name in ['assets','resources','languages','help','vendor']:
+  shutil.copytree(ROOT/name,app/name,ignore=shutil.ignore_patterns('__pycache__','*.pyc','*.pyo'))
  with zipfile.ZipFile(wheels[0]) as z:z.extractall(app/'vendor')
  shutil.copytree(ROOT/'packaging/verapdf',app/'verapdf')
  validator_launcher=app/'verapdf/verapdf'
  validator_launcher.write_text('#!/bin/sh\nexec /usr/bin/java -jar "$(dirname -- "$0")/cli-1.30.3.jar" "$@"\n')
  validator_launcher.chmod(0o755)
  docs=stage/'usr/share/doc/mintpdf';docs.mkdir(parents=True)
- for name in ['LICENSE','README.md','CHANGELOG.md']:shutil.copy2(ROOT/name,docs/name)
+ for name in ['LICENSE','README.md','CHANGELOG.md','THIRD_PARTY_NOTICES.md']:shutil.copy2(ROOT/name,docs/name)
+ shutil.copy2(ROOT/'packaging/PyMuPDF-AGPL-3.0.txt',docs/'PyMuPDF-AGPL-3.0.txt')
  shutil.copy2(ROOT/'packaging/user_integration.py',docs/'user_integration.py')
  binary=stage/'usr/bin';binary.mkdir(parents=True)
  launcher=binary/'mintpdf'
